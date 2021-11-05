@@ -96,8 +96,7 @@ var timeType = reflect.TypeOf(time.Time{})
 var durationType = reflect.TypeOf(time.Duration(0))
 
 func (en *encoder) value(key uint64, val reflect.Value, prefix TagPrefix) {
-
-	// Non-reflectively handle some of the fixed types
+	// Non-reflectively handle some fixed types
 	switch v := val.Interface().(type) {
 	case bool:
 		en.uvarint(key | 0)
@@ -300,7 +299,6 @@ func (en *encoder) value(key uint64, val reflect.Value, prefix TagPrefix) {
 }
 
 func (en *encoder) slice(key uint64, slval reflect.Value) {
-
 	// First handle common cases with a direct typeswitch
 	sllen := slval.Len()
 	packed := encoder{}
@@ -404,7 +402,6 @@ func (en *encoder) handleMap(key uint64, mpval reflect.Value, prefix TagPrefix) 
 			}
 			repeated MapFieldEntry map_field = N;
 	*/
-
 	for _, mkey := range mpval.MapKeys() {
 		mval := mpval.MapIndex(mkey)
 

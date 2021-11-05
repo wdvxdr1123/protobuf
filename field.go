@@ -107,5 +107,4 @@ func innerFieldIndexes(id *int, v reflect.Type) []*ProtoField {
 		}
 	}
 	return out
-
 }
